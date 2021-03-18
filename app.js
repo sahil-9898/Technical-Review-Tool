@@ -13,9 +13,9 @@ app.get('/', (_, res) => {
 
 
 //connection to DB
-mongoose.connect(process.env.DB_CONNECTION, () =>{
-    console.log("Connected to database");
-},{useNewUrlParser: true } );
+mongoose.connect(process.env.DB_CONNECTION,{useNewUrlParser: true },
+    () =>{console.log("Connected to database");}
+    );
 
 
 //starting the server on localhost
