@@ -1,5 +1,6 @@
 const express = require("express");
-
+const mongoose = require("mongoose");
+require('dotenv/config');
 const app = express();
 
 
@@ -11,7 +12,10 @@ app.get('/', (_, res) => {
 
 
 
-
+//connection to DB
+mongoose.connect(process.env.DB_CONNECTION, () =>{
+    console.log("Connected to database");
+},{useNewUrlParser: true } );
 
 
 //starting the server on localhost
