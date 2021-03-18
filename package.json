@@ -1,0 +1,23 @@
+{
+  "name": "technical-review-tool",
+  "version": "1.0.0",
+  "description": "Project for the Software Engineering Course",
+  "main": "app.js",
+  "scripts": {
+    "start":  "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sahil-9898/Technical-Review-Tool.git"
+  },
+  "author": "Sahil Tiwari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sahil-9898/Technical-Review-Tool/issues"
+  },
+  "homepage": "https://github.com/sahil-9898/Technical-Review-Tool#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
