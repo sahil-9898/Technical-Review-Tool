@@ -1,21 +1,27 @@
+const { urlencoded } = require("body-parser");
 const express = require("express");
+const app = express();
 const mongoose = require("mongoose");
 require('dotenv/config');
-const app = express();
 
+
+//connection to DB
+mongoose.connect(process.env.DB_CONNECTION,{useNewUrlParser: true, useUnifiedTopology: true});
+const user = require("./models/user");
+
+
+//middlewares
+app.use(urlencoded({extended:true}));
 
 
 //routes
 app.get('/', (_, res) => {
-    res.send("Root route");
+    res.render("index.ejs");
 });
 
 
 
-//connection to DB
-mongoose.connect(process.env.DB_CONNECTION,{useNewUrlParser: true },
-    () =>{console.log("Connected to database");}
-    );
+
 
 
 //starting the server on localhost
