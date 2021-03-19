@@ -6,7 +6,9 @@ require('dotenv/config');
 
 
 //connection to DB
-mongoose.connect(process.env.DB_CONNECTION,{useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.DB_CONNECTION,{useNewUrlParser: true, useUnifiedTopology: true}, ()=>{
+    console.log("database connected");
+});
 const user = require("./models/user");
 
 
@@ -17,6 +19,22 @@ app.use(urlencoded({extended:true}));
 //routes
 app.get('/', (_, res) => {
     res.render("index.ejs");
+});
+
+app.post("/",(req, res) => {
+    const eid = req.body.eid;
+    user.find({eid: eid}, (err, user)=>{
+        if(err){
+            console.log(err);
+            res.redirect("/");
+        }else{
+            if(user.length===0){
+                res.redirect("/");
+            }else{
+                res.render("home.ejs", {user:user[0]});
+            }
+        }
+    });
 });
 
 
