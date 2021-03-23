@@ -34,28 +34,88 @@ app.post("/",(req, res) => {
                 res.redirect("/");
             }else{
                 currentUser = user.designation;
-                res.redirect("/home");
+                res.redirect("/reviews");
             }
         }
     });
 });
 
-app.get("/home", (req, res)=>{
+app.get("/reviews", (req, res)=>{
     reviews.find({}, (err, reviews)=>{
         if(err){
             console.log(err);
         }else{
-            res.render("home.ejs", {reviews:reviews});
+            res.render("reviews.ejs", {reviews:reviews});
         }
     });
 });
+
+app.get("/reviews/:id", (req, res)=>{
+    reviews.findById(req.params.id,(err, review)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.render("reviewDetails.ejs", {review:review});
+        }
+    });
+});
+
+app.get("/addChanges/:id/:comment", (req, res)=>{
+    if(currentUser === "developer"){
+        reviews.findById(req.params.id, (err, review)=>{
+            if(err){
+                console.log(err);
+            }else{
+                res.render("addChanges.ejs",
+                    {
+                        comment:review.panelMembers[req.params.comment], 
+                        id:req.params.id, 
+                        comment:req.params.comment,
+                        review: review
+                    }
+                );
+            }
+        });
+    }else{
+        console.log("You Do not have permission to add changes");
+        res.redirect("/reviews/"+req.params.id);
+    } 
+});
+
+app.post("/addChanges/:id/:comment", (req, res)=>{
+    reviews.findById(req.params.id, (err, review)=>{
+        if(err){
+            console.log(err);
+        }else{
+            review.panelMembers[req.params.comment].comment.changeDesc = req.body.changeDesc;
+            review.panelMembers[req.params.comment].comment.commitLink = req.body.commitLink;
+            review.panelMembers[req.params.comment].comment.status = "Acknowledged";
+            review.save();
+            res.redirect("/reviews/"+req.params.id);
+        }
+    });
+})
+
+app.get("/viewChanges/:id/:comment", (req, res)=>{
+    reviews.findById(req.params.id, (err, review)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.render("viewChanges.ejs", 
+            {
+                review:review,
+                comment:review.panelMembers[req.params.comment]
+            });
+        }
+    }); 
+}); 
 
 app.get("/reviewForm", (req, res)=>{
     if(currentUser=="manager"){
         res.render("reviewForm1.ejs");
     }else{
         console.log("You do not have permission to conduct a review");
-        res.redirect("/home");
+        res.redirect("/reviews");
     }
 });
 
@@ -101,18 +161,10 @@ app.post("/reviewForm/:id", (req, res)=>{
                 review.panelMembers[i].comment.severity = req.body.severity[i];
             }
             review.save();
-            res.redirect("/home");
+            res.redirect("/reviews");
         }
     });
 });
-
-
-
-
-
-
-
-
 
 app.get("/logout", (req,res)=>{
     currentUser = "";

@@ -2,14 +2,10 @@
 
 <h1>Home page</h1>
 
-<!--Logout Button-->
-<form action="/logout">
-    <button class = "btn btn-danger">Logout</button>
-</form>
 
 <ul>
     <% for(let i=0;i<reviews.length;i++){ %>
-        <li><%= reviews[i] %></li>    
+        <li><a href="/reviews/<%= reviews[i]._id %> "><%= reviews[i].name %></a></li>    
     <% } %> 
 </ul>
 

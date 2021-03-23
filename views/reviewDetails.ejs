@@ -1,0 +1,17 @@
+<%- include("partials/header.ejs") %>
+
+<% for(let i=0;i<5;i++){ %> 
+    <li>
+        <%= review.panelMembers[i].comment.comment %>
+        <%= review.panelMembers[i].comment.status %>
+        <% if(review.panelMembers[i].comment.status==="Not Acknowledged" ){ %>
+            <a href="/addChanges/<%= review._id %>/<%= i %>">Change Status</a>
+        <% }else{ %>
+            <a href="/viewChanges/<%= review._id %>/<%= i %>">Acknowledged</a>
+        <% } %>
+    </li>
+<% } %> 
+
+
+
+<%- include("partials/footer.ejs") %>

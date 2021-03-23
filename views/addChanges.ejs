@@ -1,0 +1,10 @@
+<%- include("partials/header.ejs") %>
+
+<%= id %>
+<form action="/addChanges/<%= id %>/<%= comment %>" method="POST">
+    <textarea name="changeDesc" id="change" cols="30" rows="10" placeholder="Description"></textarea>
+    <input type="text" placeholder = "Commit Link", name = "commitLink">
+    <button class = "btn btn-primary">Update</button>
+</form>
+
+<%- include("partials/footer.ejs") %>
