@@ -1,9 +1,22 @@
 <%- include("partials/header.ejs") %> 
 
-<h1>Welcome </h1>
+<h1>Home page</h1>
 
+<!--Logout Button-->
+<form action="/logout">
+    <button class = "btn btn-danger">Logout</button>
+</form>
 
+<ul>
+    <% for(let i=0;i<reviews.length;i++){ %>
+        <li><%= reviews[i] %></li>    
+    <% } %> 
+</ul>
 
+<!--Conduct review button-->
+<form action="/reviewForm">
+    <button class="btn btn-primary">Conduct a Review</button>
+</form>
 
 
 

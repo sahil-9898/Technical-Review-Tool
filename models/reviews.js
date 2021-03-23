@@ -9,11 +9,11 @@ const reviewSchema = new mongoose.Schema({
         comment: {
             comment: String,
             severity: String,
-            status: String,
+            status: {type:String, default: "Not Acknowledged"},
             changeDesc: String,
             commitLink: String,
         }
     }]
 });
 
-module.exports = mongoose.model("review", reviewSchema);
+module.exports = mongoose.model("reviews", reviewSchema);
