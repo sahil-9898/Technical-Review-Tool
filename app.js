@@ -10,6 +10,7 @@ mongoose.connect(process.env.DB_CONNECTION,{useNewUrlParser: true, useUnifiedTop
     console.log("database connected");
 });
 const user = require("./models/user");
+const review = require("./models/review");
 
 
 //middlewares
@@ -31,13 +32,22 @@ app.post("/",(req, res) => {
             if(user.length===0){
                 res.redirect("/");
             }else{
-                res.render("home.ejs", {user:user[0]});
+                res.redirect("/home");
             }
         }
     });
 });
 
-
+app.get("/home", (req, res)=>{
+    review.find({}, (err, reviews)=>{
+        if(err){
+            console.log(err);
+        }else{
+            console.log(reviews);
+            res.render("home.ejs", {reviews:reviews});
+        }
+    });
+});
 
 
 
