@@ -16,6 +16,7 @@ const review = require("./models/review");
 //middlewares
 app.use(urlencoded({extended:true}));
 
+let currentUser = "abcd";
 
 //routes
 app.get('/', (_, res) => {
@@ -24,7 +25,7 @@ app.get('/', (_, res) => {
 
 app.post("/",(req, res) => {
     const eid = req.body.eid;
-    user.find({eid: eid}, (err, user)=>{
+    user.findOne({eid: eid}, (err, user)=>{
         if(err){
             console.log(err);
             res.redirect("/");
@@ -32,6 +33,8 @@ app.post("/",(req, res) => {
             if(user.length===0){
                 res.redirect("/");
             }else{
+                currentUser = user.designation;
+                console.log(currentUser);
                 res.redirect("/home");
             }
         }
@@ -43,13 +46,23 @@ app.get("/home", (req, res)=>{
         if(err){
             console.log(err);
         }else{
-            console.log(reviews);
             res.render("home.ejs", {reviews:reviews});
         }
     });
 });
 
 
+
+
+
+
+
+
+
+app.get("/logout", (req,res)=>{
+    currentUser = "";
+    res.redirect("/");
+});
 
 
 //starting the server on localhost
