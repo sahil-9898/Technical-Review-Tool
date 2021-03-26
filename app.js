@@ -15,6 +15,7 @@ const reviews = require("./models/reviews");
 
 //middlewares
 app.use(urlencoded({extended:true}));
+app.use(express.static("public"));
 
 let currentUser = "abcd";
 
