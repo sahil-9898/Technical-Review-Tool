@@ -3,13 +3,32 @@ const { urlencoded } = require("body-parser");
 const dbConnect = require("./db");
 const users = require("./models/users");
 const reviews = require("./models/reviews.js");
+const session = require("express-session");
+const redis = require("redis");
+const redisConnect = require("connect-redis");
 
 const app = express();
 dbConnect();
-
 //middlewares
 app.use(urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+let RedisStore = redisConnect(session);
+let redisClient = redis.createClient();
+app.use(
+  session({
+    name: "eid",
+    store: new RedisStore({ client: redisClient, disableTouch: true }),
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 365 * 10,
+      httpOnly: true,
+      sameSite: "lax",
+    },
+    secret: "sadfdsfdsa",
+    resave: false,
+  })
+);
 
 let currentUser = "abcd";
 
