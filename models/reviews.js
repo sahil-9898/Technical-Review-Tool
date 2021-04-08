@@ -1,19 +1,21 @@
-const mongoose = require("mongoose");
+const Mongoose = require("mongoose");
 
-const reviewSchema = new mongoose.Schema({
-    name: String,
-    createdAt: {type : String, default : new Date().toLocaleString()},
-    objective: String,
-    panelMembers: [{
-        name: String,
-        comment: {
-            comment: String,
-            severity: String,
-            status: {type:String, default: "Not Acknowledged"},
-            changeDesc: String,
-            commitLink: String,
-        }
-    }]
+const reviewSchema = new Mongoose.Schema({
+  name: String,
+  createdAt: { type: String, default: new Date().toLocaleString() },
+  objective: String,
+  panelMembers: [
+    {
+      name: String,
+      comment: {
+        comment: String,
+        severity: String,
+        status: { type: String, default: "Not Acknowledged" },
+        changeDesc: String,
+        commitLink: String,
+      },
+    },
+  ],
 });
 
-module.exports = mongoose.model("reviews", reviewSchema);
+module.exports = Mongoose.model("reviews", reviewSchema);
