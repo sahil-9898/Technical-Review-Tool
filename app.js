@@ -33,7 +33,8 @@ app.use(
 let currentUser = "abcd";
 
 //routes
-app.get("/", (_, res) => {
+app.get("/", (req, res) => {
+  req.session.destroy();
   res.render("index.ejs");
 });
 
@@ -47,7 +48,8 @@ app.post("/", (req, res) => {
       if (user.length === 0) {
         res.redirect("/");
       } else {
-        currentUser = user.designation;
+        req.session.currentUser = user.designation;
+        // currentUser = user.designation;
         res.redirect("/reviews");
       }
     }
@@ -55,27 +57,35 @@ app.post("/", (req, res) => {
 });
 
 app.get("/reviews", (req, res) => {
-  reviews.find({}, (err, reviews) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render("reviews.ejs", { reviews: reviews });
-    }
-  });
+  if (!req.session.currentUser) {
+    res.redirect("/");
+  } else {
+    reviews.find({}, (err, reviews) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("reviews.ejs", { reviews: reviews });
+      }
+    });
+  }
 });
 
 app.get("/reviews/:id", (req, res) => {
-  reviews.findById(req.params.id, (err, review) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render("reviewDetails.ejs", { review: review });
-    }
-  });
+  if (!req.session.currentUser) {
+    res.redirect("/");
+  } else {
+    reviews.findById(req.params.id, (err, review) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("reviewDetails.ejs", { review: review });
+      }
+    });
+  }
 });
 
 app.get("/addChanges/:id/:comment", (req, res) => {
-  if (currentUser === "developer") {
+  if (req.session.currentUser === "developer") {
     reviews.findById(req.params.id, (err, review) => {
       if (err) {
         console.log(err);
@@ -124,7 +134,7 @@ app.get("/viewChanges/:id/:comment", (req, res) => {
 });
 
 app.get("/reviewForm", (req, res) => {
-  if (currentUser == "manager") {
+  if (req.session.currentUser == "manager") {
     res.render("reviewForm1.ejs");
   } else {
     console.log("You do not have permission to conduct a review");
@@ -133,27 +143,31 @@ app.get("/reviewForm", (req, res) => {
 });
 
 app.post("/reviewForm", (req, res) => {
-  const form1 = req.body;
-  reviews.create(
-    {
-      name: form1.reviewName,
-      objective: form1.objective,
-      panelMembers: [
-        { name: form1.name[0] },
-        { name: form1.name[1] },
-        { name: form1.name[2] },
-        { name: form1.name[3] },
-        { name: form1.name[4] },
-      ],
-    },
-    (err, form1) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.redirect("/reviewForm/" + form1._id);
+  if (!req.session) {
+    res.redirect("/");
+  } else {
+    const form1 = req.body;
+    reviews.create(
+      {
+        name: form1.reviewName,
+        objective: form1.objective,
+        panelMembers: [
+          { name: form1.name[0] },
+          { name: form1.name[1] },
+          { name: form1.name[2] },
+          { name: form1.name[3] },
+          { name: form1.name[4] },
+        ],
+      },
+      (err, form1) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect("/reviewForm/" + form1._id);
+        }
       }
-    }
-  );
+    );
+  }
 });
 
 app.get("/reviewForm/:id", (req, res) => {
@@ -183,7 +197,8 @@ app.post("/reviewForm/:id", (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
-  currentUser = "";
+  // currentUser = "";
+  req.session.destroy();
   res.redirect("/");
 });
 
