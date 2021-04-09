@@ -6,12 +6,11 @@ const reviews = require("./models/reviews.js");
 const session = require("express-session");
 const redis = require("redis");
 const redisConnect = require("connect-redis");
-
 const app = express();
 dbConnect();
-//middlewares
-app.use(urlencoded({ extended: true }));
-app.use(express.static("public"));
+
+app.use(urlencoded({ extended: true })); //bodyParser
+app.use(express.static("public")); //Styles
 
 let RedisStore = redisConnect(session);
 let redisClient = redis.createClient();
@@ -30,12 +29,12 @@ app.use(
   })
 );
 
-let currentUser = "abcd";
+// let currentUser = "abcd";
 
 //routes
 app.get("/", (req, res) => {
-  req.session.destroy();
-  res.render("index.ejs");
+  if (!req.session.currentUser) res.render("index.ejs");
+  else res.redirect("/reviews");
 });
 
 app.post("/", (req, res) => {
