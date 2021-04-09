@@ -7,6 +7,7 @@ const session = require("express-session");
 const redis = require("redis");
 const redisConnect = require("connect-redis");
 const app = express();
+require("dotenv/config");
 dbConnect();
 
 app.use(urlencoded({ extended: true })); //bodyParser
@@ -24,14 +25,14 @@ app.use(
       httpOnly: true,
       sameSite: "lax",
     },
-    secret: "sadfdsfdsa",
+    secret: process.env.SECRET,
     resave: false,
   })
 );
 
 // let currentUser = "abcd";
 
-//routes
+//---------------routes-------------------------------------------
 app.get("/", (req, res) => {
   if (!req.session.currentUser) res.render("index.ejs");
   else res.redirect("/reviews");
