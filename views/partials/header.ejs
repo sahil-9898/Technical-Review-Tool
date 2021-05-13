@@ -10,12 +10,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
         crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
 </head>
 <body>
-    <form action="/reviews">
-        <button class = "btn btn-success">Home</button>
-    </form>
-    <form action="/logout">
-        <button class = "btn btn-danger">Logout</button>
-    </form>
+    <nav class="navbar navbar-light">
+        <div class="container-fluid">
+            <a class = "navbar-brand" href="/reviews">Technical Review Tool</a>
+            <form action="/logout" class="d-flex">
+                <button class="btn btn-danger">Logout</button>
+            </form>
+        </div>
+    </nav><hr>
+
+
     

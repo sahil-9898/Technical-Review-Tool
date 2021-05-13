@@ -1,20 +1,31 @@
-<%- include("partials/header.ejs") %> 
+<%- include("partials/header.ejs") %>
 
-<h1>Home page</h1>
-
-
-<ul>
+<div class="reviews-container row">
     <% for(let i=0;i<reviews.length;i++){ %>
-        <li><a href="/reviews/<%= reviews[i]._id %> "><%= reviews[i].name %></a></li>    
-    <% } %> 
-</ul>
+        <div class="card col-lg-4">
+            <a href="/reviews/<%= reviews[i]._id %>" class="review-link">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= reviews[i].name %>
+                    </h5>
+                    <p class="card-text">
+                        <%= reviews[i].objective %>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <%= reviews[i].createdAt %>
+                </div>
+            </a>
+        </div>  
+    <% } %>
+</div>
+
 
 <!---Conduct review button--->
-<form action="/reviewForm">
-    <button class="btn btn-primary">Conduct a Review</button>
-</form>
+<div class="conduct-review-btn">
+    <form action="/reviewForm">
+        <button class="btn btn-success">Conduct a Review</button>
+    </form>
+</div>
 
-
-
-
-<%- include("partials/footer.ejs") %> 
+<%- include("partials/footer.ejs") %>

@@ -1,0 +1,54 @@
+@font-face {
+  font-family: OpenSans-Regular;
+  src: url("../fonts/OpenSans/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: OpenSans-ExtraBold;
+  src: url("../fonts/OpenSans/OpenSans-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: OpenSans-Bold;
+  src: url("../fonts/OpenSans/OpenSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: OpenSans-SemiBold;
+  src: url("../fonts/OpenSans/OpenSans-SemiBold.ttf");
+}
+
+body {
+  font-family: OpenSans-Regular;
+}
+.card {
+  margin: 20px 20px;
+  max-width: 25rem;
+  background: #f2f2f2;
+}
+.review-link {
+  color: black;
+}
+.review-link:hover {
+  text-decoration: none;
+  color: black;
+}
+.reviews-container {
+  padding-top: 30px;
+  margin: 0 95px;
+}
+.conduct-review-btn {
+  text-align: center;
+  padding-top: 70px;
+}
+hr {
+  height: 10px;
+  background: #4e5ec3;
+  margin-top: 0;
+}
+.btn-danger {
+  background-color: #fd5d5d;
+}
+.btn-success {
+  background-color: #2dc7b6;
+}

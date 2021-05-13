@@ -45,7 +45,7 @@ app.post("/", (req, res) => {
       console.log(err);
       res.redirect("/");
     } else {
-      if (user.length === 0) {
+      if (user == null) {
         res.redirect("/");
       } else {
         req.session.currentUser = user.designation;
