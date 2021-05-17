@@ -1,17 +1,36 @@
 <%- include("partials/header.ejs") %>
 
-<% for(let i=0;i<5;i++){ %> 
-    <li>
-        <%= review.panelMembers[i].comment.comment %>
-        <%= review.panelMembers[i].comment.status %>
-        <% if(review.panelMembers[i].comment.status==="Not Acknowledged" ){ %>
-            <a href="/addChanges/<%= review._id %>/<%= i %>">Change Status</a>
-        <% }else{ %>
-            <a href="/viewChanges/<%= review._id %>/<%= i %>">Acknowledged</a>
-        <% } %>
-    </li>
-<% } %> 
 
+    <div class="review-details-header">
+        <h3><%= review.name %></h3>
+        <h6><%= review.createdAt %></h5>
+    </div>
+    <div class="review-details-body">
+        <div class="review-details-col1">
+            <p>Comments</p>
+            <% for(let i=0;i<5;i++){ %>
+                <p><%= review.panelMembers[i].name %> </p>
+                <label for="members<%= i %>">Comment</label>
+                <input type="text" id="member<%= i %>" value="<%= review.panelMembers[i].comment.comment %>" readonly>
+            <% } %> 
+        </div>
+        <div class="review-details-col2">
+            <p>Objective</p>
+            <%= review.objective %> 
+        </div>
+        
+    </div>
+    <% for(let i=0;i<5;i++){ %>
+        <li>
+            <%= review.panelMembers[i].comment.comment %>
+            <%= review.panelMembers[i].comment.status %>
+            <% if(review.panelMembers[i].comment.status==="Not Acknowledged" ){ %>
+                <a href="/addChanges/<%= review._id %>/<%= i %>">Change Status</a>
+            <% }else{ %>
+                <a href="/viewChanges/<%= review._id %>/<%= i %>">Acknowledged</a>
+            <% } %>
+        </li>
+    <% } %>
 
 
 <%- include("partials/footer.ejs") %>
