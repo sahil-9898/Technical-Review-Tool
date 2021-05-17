@@ -20,6 +20,12 @@
 
 body {
   font-family: OpenSans-Regular;
+  background-color: #f2f2f2;
+}
+.navbar-brand {
+  font-family: OpenSans-Bold;
+  color: #4e5ec3 !important;
+  font-size: 1.7rem;
 }
 .card {
   margin: 20px 20px;
@@ -51,4 +57,61 @@ hr {
 }
 .btn-success {
   background-color: #2dc7b6;
+}
+.reviewForm1-container {
+  background-color: white;
+  height: 600px;
+  margin-top: 40px;
+}
+.col1 {
+  width: 50%;
+  float: left;
+  margin-top: 40px;
+  height: 400px;
+}
+.col2 {
+  width: 50%;
+  float: right;
+  margin-top: 40px;
+  height: 400px;
+}
+#review-title {
+  width: 385px;
+  height: 50px;
+  background-color: #f2f2f2;
+  border: none;
+}
+#objective {
+  background-color: #f2f2f2;
+  border: none;
+}
+.panel-members {
+  background-color: #f2f2f2;
+  border: none;
+  margin-bottom: 20px;
+  height: 45px;
+  width: 400px;
+}
+#reviewForm1-button {
+  background-color: #2dc7b6;
+  width: 150px;
+  color: white;
+  margin-left: 400px;
+}
+.form2-col1 {
+  width: 50%;
+  float: left;
+}
+.form2-col2 {
+  width: 50%;
+  float: right;
+}
+.form2-header {
+  display: flex;
+  gap: 500px;
+}
+#objective-box {
+  background-color: white;
+  width: 500px;
+  height: 200px;
 }

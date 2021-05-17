@@ -1,15 +1,24 @@
 <%- include("partials/header.ejs") %>
 
-<form action="/reviewForm" method="POST">
-    <input type="text" placeholder="Review Title" name = "reviewName" required>
-    <textarea name="objective" id="objective" cols="30" rows="10" placeholder="Review Objective"></textarea>
-    <input type="text" placeholder="Name" name = "name" required>
-    <input type="text" placeholder="Name" name="name" required>
-    <input type="text" placeholder="Name" name="name" required>
-    <input type="text" placeholder="Name" name="name" required>
-    <input type="text" placeholder="Name" name="name" required>
-    <button>Next</button>
+<div class="container reviewForm1-container">
+<form action="/reviewForm" method="POST" autocomplete="off">
+    <div class="col1">
+        <label for="review-title">Review Title</label><br>
+        <input type="text" placeholder="Review Title" name="reviewName" id="review-title" autocomplete="off" required><br>
+        <label for="objective">Objective</label><br>
+        <textarea name="objective" id="objective" cols="45" rows="10" placeholder="Review Objective"></textarea>
+    </div>
+    <div class="col2">
+        <label for="panel-members">Panel Members</label><br>
+        <input type="text" placeholder="Name" name="name" class="panel-members" autocomplete="off" required><br>
+        <input type="text" placeholder="Name" name="name" class="panel-members" autocomplete="off" required><br>
+        <input type="text" placeholder="Name" name="name" class="panel-members" autocomplete="off" required><br>
+        <input type="text" placeholder="Name" name="name" class="panel-members" autocomplete="off" required><br>
+        <input type="text" placeholder="Name" name="name" class="panel-members" autocomplete="off" required><br>
+    </div>
+    <button id="reviewForm1-button" class="btn btn-light">Next</button>
 </form>
+</div>
 
 
 

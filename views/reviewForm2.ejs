@@ -1,18 +1,40 @@
 <%- include("partials/header.ejs") %>
 
-<form action="/reviewForm/<%= review._id %>" method="POST">
-    <input type="text" name="comments" placeholder="Comment">
-    <input type="number" name="severity" placeholder="Severity Level">
-    <input type="text" name="comments" placeholder="Comment">
-    <input type="number" name="severity" placeholder="Severity Level">
-    <input type="text" name="comments" placeholder="Comment">
-    <input type="number" name="severity" placeholder="Severity Level">
-    <input type="text" name="comments" placeholder="Comment">
-    <input type="number" name="severity" placeholder="Severity Level">
-    <input type="text" name="comments" placeholder="Comment">
-    <input type="number" name="severity" placeholder="Severity Level">
-    <button>Next</button>
-</form>
+<div class="form2-header">
+    <h3><%= review.name %></h3>
+    <h6><%= review.createdAt %> </h5>
+</div>
+<p>Objective</p>
+<div id="objective-box">
+    <%= review.objective %>
+</div>
+<p>Comments</p>
+<div class="reviewForm2-container">
+    <form action="/reviewForm/<%= review._id %>" method="POST">
+        <div class="form2-col1">
+            <label for="panelMember1">Panel Member 1</label><br>
+            <input type="text" name="comments" placeholder="Comment" id="panelMember1">
+            <input type="number" name="severity" placeholder="Severity Level"><br>
+            <label for="panelMember2">Panel Member 2</label><br>
+            <input type="text" name="comments" placeholder="Comment" id="panelMember2">
+            <input type="number" name="severity" placeholder="Severity Level"><br>
+            <label for="panelMember3">Panel Member 3</label><br>
+            <input type="text" name="comments" placeholder="Comment" id="panelMember3">
+            <input type="number" name="severity" placeholder="Severity Level"><br>
+        </div>
+        <div class="form2-col2">
+            <label for="panelMember4">Panel Member 4</label><br>
+            <input type="text" name="comments" placeholder="Comment" id="panelMember4">
+            <input type="number" name="severity" placeholder="Severity Level"><br>
+            <label for="panelMember5">Panel Member 5</label><br>
+            <input type="text" name="comments" placeholder="Comment" id="panelMember5">
+            <input type="number" name="severity" placeholder="Severity Level"><br>
+            <button>Next</button>
+        </div>
+        
+    </form>
+</div>
+
 
 
 
