@@ -115,3 +115,37 @@ hr {
   width: 500px;
   height: 200px;
 }
+.review-details-header {
+  display: flex;
+  gap: 400px;
+  padding-top: 15px;
+  margin-left: 40px;
+}
+.review-details-body {
+  margin-left: 40px;
+}
+.review-details-col1 {
+  float: left;
+  width: 40%;
+}
+.review-details-col2 {
+  float: left;
+  background: white;
+  width: 500px;
+  height: 200px;
+  border-radius: 10px;
+}
+#review-details-objective-text {
+  background: #f2f2f2;
+  font-family: OpenSans-Bold;
+  padding-bottom: 10px;
+}
+#review-details-comment-text {
+  font-family: OpenSans-Bold;
+  margin-top: 10px;
+}
+.reviewDetails-panelMember-name {
+  font-family: OpenSans-SemiBold;
+  margin-bottom: 0;
+  margin-top: 10px;
+}

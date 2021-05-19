@@ -1,6 +1,20 @@
 <%- include("partials/header.ejs") %>
+   <div class="view-changes-header">
+      <h3><%= review.name %></h3>
+      <h6><%= review.createdAt %></h6>
+      <p>Acknowledged</p>
+      <p>Comment</p>
+      <p>Panel Member: <%= comment.name %> </p>
+      <label for="comment">Comment</label>
+      <input type="text" class="comment" value="<%= comment.comment.comment %>" readonly>
+      <label for="severity">Severity</label>
+      <input type="number" class="severity" value="<%= comment.comment.severity %>" readonly>
+   </div>
+   <div class="dev-log">
+      <h5>Developer Log</h5>
+      <p><%= comment.comment.changeDesc %> </p>
+      <p><%= comment.comment.commitLink %> </p>
+   </div>
 
-   <%= comment %> 
-   <%= review %> 
 
 <%- include("partials/footer.ejs") %>

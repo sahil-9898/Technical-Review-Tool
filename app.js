@@ -93,7 +93,7 @@ app.get("/addChanges/:id/:comment", (req, res) => {
         res.render("addChanges.ejs", {
           comment: review.panelMembers[req.params.comment],
           id: req.params.id,
-          comment: req.params.comment,
+          commentIndex: req.params.comment,
           review: review,
         });
       }
@@ -105,7 +105,7 @@ app.get("/addChanges/:id/:comment", (req, res) => {
 });
 
 app.post("/addChanges/:id/:comment", (req, res) => {
-  reviews.findById(req.params.id, (err, review) => {
+  reviews.findById(req.params.id, async (err, review) => {
     if (err) {
       console.log(err);
     } else {
@@ -114,7 +114,7 @@ app.post("/addChanges/:id/:comment", (req, res) => {
       review.panelMembers[req.params.comment].comment.commitLink =
         req.body.commitLink;
       review.panelMembers[req.params.comment].comment.status = "Acknowledged";
-      review.save();
+      await review.save();
       res.redirect("/reviews/" + req.params.id);
     }
   });
