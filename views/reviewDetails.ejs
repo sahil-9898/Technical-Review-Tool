@@ -1,6 +1,17 @@
 <%- include("partials/header.ejs") %>
 
-
+    <% if(error!="none" ){ %>
+        <div class="alert alert-primary fade show alert-dismissible" role="alert"
+            style="width:600px;position:absolute;margin:20px 450px;">
+            <%= error %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <script>
+                setTimeout(function () { $('.alert').alert('close'); }, 2000);
+            </script>
+        </div>
+    <% } %>
     <div class="review-details-header">
         <h3 style="font-weight: 1000;"><%= review.name %></h3>
         <h6 style="font-weight:600"><%= review.createdAt %></h6>

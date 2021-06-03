@@ -18,11 +18,13 @@
   "homepage": "https://github.com/sahil-9898/Technical-Review-Tool#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
     "connect-redis": "^5.1.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "js-alert": "^1.0.4",
     "mongoose": "^5.12.0",
     "nodemon": "^2.0.7",
     "redis": "^3.1.1"

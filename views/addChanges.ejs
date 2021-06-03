@@ -1,24 +1,32 @@
 <%- include("partials/header.ejs") %>
+<div class="add-changes-body">
+    <div class="addChanges-header">
+        <span id="add-changes-title">
+            <%= review.name %>
+        </span>
+        <span id="add-changes-createdAt">
+            <%= review.createdAt %>
+        </span>
+        <p><strong>Not Acknowledged</strong></p>
+        <p><strong>Comment</strong></p>
+        <p><strong>Panel Member:</strong> <%= comment.name %>
+        </p>
+        <label for="comment"><strong>Comment</strong></label>
+        <input type="text" class="comment" value="<%= comment.comment.comment %>" readonly>&nbsp;&nbsp;&nbsp;
+        <label for="severity"><strong>Severity</strong></label>
+        <input type="number" class="severity" value="<%= comment.comment.severity %>" readonly>
+    </div>
+    <br>
+    <div class="dev-log">
+        <h5><strong>Developer Log</strong></h5>
+        <form action="/addChanges/<%= id %>/<%= commentIndex %>" method="POST">
+            <textarea name="changeDesc" id="change" cols="30" rows="10" placeholder="Description"></textarea><br><br>
+            <input type="text" placeholder="Commit Link" , name="commitLink">
+            <button class="btn btn-success">Update</button>
+        </form>
+    </div>
+</div>
 
-<div class="addChanges-header">
-    <h3><%= review.name %></h3>
-    <h6><%= review.createdAt %></h6>
-    <p>Not Acknowledged</p>
-    <p>Comment</p>
-    <p>Panel Member: <%= comment.name %></p>
-    <label for="comment">Comment</label>
-    <input type="text" class="comment" value="<%= comment.comment.comment %>" readonly>
-    <label for="severity">Severity</label>
-    <input type="number" class="severity" value="<%= comment.comment.severity %>" readonly>
-</div>
-<div class="dev-log">
-    <h5>Developer Log</h5>
-    <form action="/addChanges/<%= id %>/<%= commentIndex %>" method="POST">
-        <textarea name="changeDesc" id="change" cols="30" rows="10" placeholder="Description"></textarea>
-        <input type="text" placeholder="Commit Link" , name="commitLink">
-        <button class="btn btn-primary">Update</button>
-    </form>
-</div>
 
 
 <%- include("partials/footer.ejs") %>

@@ -10,8 +10,8 @@ const app = express();
 require("dotenv/config");
 dbConnect();
 
-app.use(urlencoded({ extended: true })); //bodyParser
-app.use(express.static("public")); //Styles
+app.use(urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 let RedisStore = redisConnect(session);
 let redisClient = redis.createClient();
@@ -31,10 +31,11 @@ app.use(
 );
 
 // let currentUser = "abcd";
+let error = "none";
 
 //---------------routes-------------------------------------------
 app.get("/", (req, res) => {
-  if (!req.session.currentUser) res.render("index.ejs");
+  if (!req.session.currentUser) res.render("index.ejs", { error: "none" });
   else res.redirect("/reviews");
 });
 
@@ -43,10 +44,10 @@ app.post("/", (req, res) => {
   users.findOne({ eid: eid }, (err, user) => {
     if (err) {
       console.log(err);
-      res.redirect("/");
+      res.render("index.ejs", { error: "Invalid Employee ID" });
     } else {
       if (user == null) {
-        res.redirect("/");
+        res.render("index.ejs", { error: "Invalid Employee ID" });
       } else {
         req.session.currentUser = user.designation;
         // currentUser = user.designation;
@@ -64,7 +65,11 @@ app.get("/reviews", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.render("reviews.ejs", { reviews: reviews });
+        res.render("reviews.ejs", {
+          reviews: reviews,
+          error: error,
+        });
+        error = "none";
       }
     });
   }
@@ -78,7 +83,8 @@ app.get("/reviews/:id", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.render("reviewDetails.ejs", { review: review });
+        res.render("reviewDetails.ejs", { review: review, error: error });
+        error = "none";
       }
     });
   }
@@ -100,6 +106,7 @@ app.get("/addChanges/:id/:comment", (req, res) => {
     });
   } else {
     console.log("You Do not have permission to add changes");
+    error = "You do not have permission to use this feature";
     res.redirect("/reviews/" + req.params.id);
   }
 });
@@ -138,6 +145,7 @@ app.get("/reviewForm", (req, res) => {
     res.render("reviewForm1.ejs");
   } else {
     console.log("You do not have permission to conduct a review");
+    error = "You do not have permission to use this feature";
     res.redirect("/reviews");
   }
 });

@@ -4,6 +4,18 @@
         background-color: white;
     }
 </style>
+<% if(error!="none" ){ %>
+    <div class="alert alert-primary fade show alert-dismissible" role="alert"
+        style="width:600px;position:absolute;margin:20px 450px;z-index: 100;">
+        <%= error %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <script>
+                setTimeout(function () { $('.alert').alert('close'); }, 2000);
+            </script>
+    </div>
+<% } %>
 <div class="reviews-container row">
     <% for(let i=0;i<reviews.length;i++){ %>
         <div class="card col-lg-4">

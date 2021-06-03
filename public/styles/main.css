@@ -109,11 +109,16 @@ hr {
 .form2-header {
   display: flex;
   gap: 500px;
+  margin-left: 100px;
 }
 #objective-box {
   background-color: white;
   width: 500px;
   height: 200px;
+  margin-left: 100px;
+}
+.reviewForm2-container {
+  margin-left: 100px;
 }
 .review-details-header {
   display: flex;
@@ -148,4 +153,26 @@ hr {
   font-family: OpenSans-SemiBold;
   margin-bottom: 0;
   margin-top: 10px;
+}
+.add-changes-body {
+  margin-left: 100px;
+}
+#add-changes-title {
+  font-family: OpenSans-Bold;
+  font-size: 28px;
+}
+#add-changes-createdAt {
+  margin-left: 300px;
+  font-family: OpenSans-SemiBold;
+}
+.view-changes-body {
+  margin-left: 100px;
+}
+#view-changes-title {
+  font-family: OpenSans-Bold;
+  font-size: 28px;
+}
+#view-changes-createdAt {
+  margin-left: 300px;
+  font-family: OpenSans-SemiBold;
 }
