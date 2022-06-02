@@ -48,7 +48,7 @@ app.post("/", (req, res) => {
             res.render("index.ejs", { error: "Invalid Employee ID" });
         } else {
             if (user == null) {
-                res.render("index.ejs", { error: "Invalid Employee ID" });
+                res.render("index.ejs", { error: "Invalid Employee Id" });
             } else {
                 req.session.currentUser = user.designation;
                 // currentUser = user.designation;
