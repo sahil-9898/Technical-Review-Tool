@@ -18,7 +18,7 @@ let RedisStore = redisConnect(session);
 let redisClient = redis.createClient();
 app.use(
     session({
-        name: "eid",
+        name: "eidd",
         store: new RedisStore({ client: redisClient, disableTouch: true }),
         saveUninitialized: false,
         cookie: {
